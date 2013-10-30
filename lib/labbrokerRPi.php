@@ -29,13 +29,15 @@ class labbrokerRPi {
 	}
 	
 	function readDHT($id,$sens){
-		$cmd = "{$this->config['dht_path']} {$sens['sensor']} {$id}";
-		$ret = `$cmd`;
-		$file_lines = explode("\n",$ret);
-		if(substr($file_lines[2],0,5)!="temp:") return false;
-		if(substr($file_lines[3],0,6)!="humid:") return false;
 		
-		return array(substr($file_lines[2],5),substr($file_lines[3],6));
+		for($i=0;$i<5;$i++){
+			echo $cmd = "{$this->config['dht_path']} {$sens['sensor']} {$id}";
+			$ret = `$cmd`;
+			$file_lines = explode("\n",$ret);
+			
+			if(substr($file_lines[2],0,5)=="temp:" && substr($file_lines[3],0,6)=="humid:")
+				return array(substr($file_lines[2],5),substr($file_lines[3],6));
+		}
 
 	}
 	
