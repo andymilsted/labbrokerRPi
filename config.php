@@ -32,6 +32,6 @@ $config['labbroker']['DHT'][2] = array(
 );
 
 
-$config['ddns'] = "http://ipv4.cloudns.net/api/dynamicURL/?q=MTA4MDExOjMyMTc2MTU6MjMzNzYyYTllY2E2YjYxNTJiYmIxODRjZmFlZGVkYzI5ZGYwYTg4OGE3YTM3ZTU3N2RjOWFlOGExZGIwZmNmMw";
+$config['ddns'] =  "http://ipv4.cloudns.net/api/dynamicURL/?q=MTA4MDExOjMyMTc2MTU6MjMzNzYyYTllY2E2YjYxNTJiYmIxODRjZmFlZGVkYzI5ZGYwYTg4OGE3YTM3ZTU3N2RjOWFlOGExZGIwZmNmMw";
 
 
