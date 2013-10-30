@@ -2,7 +2,6 @@
 
 include("../config.php");
 include("../lib/labbrokerRPi.php");
-include("../lib/phpMQTT/phpMQTT.php");
 
 $pi = new labbrokerRPi($config);
 
