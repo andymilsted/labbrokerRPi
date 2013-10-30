@@ -29,9 +29,16 @@ class labbrokerRPi {
 	}
 	
 	function readDHT($id,$sens){
+		switch($sens['sensor']){
+			case 'dht22':
+			default:
+				$sensor = '22';
+			break;
+		}
+		
+		$cmd = "{$this->config['dht_path']} {$sensor} {$id}";
 		
 		for($i=0;$i<5;$i++){
-			echo $cmd = "{$this->config['dht_path']} {$sens['sensor']} {$id}";
 			$ret = `$cmd`;
 			$file_lines = explode("\n",$ret);
 			
