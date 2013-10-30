@@ -17,7 +17,7 @@ if(isset($pi->config['mqtt'])){
 if(isset($pi->config['brdata'])){
 	
 	include("../lib/brData.php");
-	$brdata = new brData($pi->config['brdata']['key'], $pi->config['brdata']['url'],$pi->config['brdata']['secret']);
+	$brdata = new brData($pi->config['brdata']['url'], $pi->config['brdata']['key'],$pi->config['brdata']['secret']);
 	
 }
 
