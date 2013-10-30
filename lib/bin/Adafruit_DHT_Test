@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?php
+
+	echo "Using pin#{$argv[2]}\n";
+	echo "Data bla\n";
+	$temp = rand(200,300)/10;
+	echo "temp:{$temp}\n";
+	$humid = rand(30,70);
+	echo "humid:{$humid}\n";
