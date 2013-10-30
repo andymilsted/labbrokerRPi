@@ -20,7 +20,7 @@ $config['labbroker']['1-wire']['28-000000000002'] = array(
 	"type"=>"temp",
 	"topic"=>"\$fabric/labbroker/\$feeds/\$onramp/Testing/TEMPERATURE:ROOM/TEMPERATURE",
 	"sensor"=>"DS18B20",
-	"brdata"=>array('abbrokerRPi-test', 'room_temp')
+	"brdata"=>array('labbrokerRPi-test', 'room_temp')
 );
 
 $config['labbroker']['DHT'][2] = array(
@@ -30,8 +30,8 @@ $config['labbroker']['DHT'][2] = array(
 		"\$fabric/labbroker/\$feeds/\$onramp/Testing/TEMPERATURE:ROOM/TEMPERATURE"
 	),
 	"brdata"=>array(
-		array('abbrokerRPi-test', 'room_temp'),
-		array('abbrokerRPi-test', 'room_humid')
+		array('labbrokerRPi-test', 'room_temp'),
+		array('labbrokerRPi-test', 'room_humid')
 	),
 	"sensor"=>"dht22"
 );
