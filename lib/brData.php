@@ -36,6 +36,7 @@ class brData {
 		$params['data'] = json_encode($data);
 
 		$ch = curl_init();		
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($ch, CURLOPT_URL, $this->url.'put');
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
