@@ -1,4 +1,7 @@
+#!/usr/bin/php
 <?php
+
+chdir(__DIR__);
 
 include("../config.php");
 include("../lib/labbrokerRPi.php");
