@@ -11,6 +11,6 @@ include("../lib/labbrokerRPi.php");
 
 $init = file_get_contents("../lib/install/initd-labbrokerRPi");
 
-$init = str_replace("__DIR__", $config['pwd']."/bin");
+$init = str_replace("__DIR__", $config['pwd']."/bin", $init);
 
 file_put_contents("/etc/init.d/labbrokerRPi", $init);
