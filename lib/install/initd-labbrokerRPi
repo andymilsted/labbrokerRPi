@@ -19,7 +19,7 @@ case "$1" in
   start)
     echo "Starting labbrokerRPi"
     # run application you want to start
-    	$labbrokerRPi_PATH/startUp.php
+    	php $labbrokerRPi_PATH/startUp.php
     ;;
   stop)
     echo "Stopping labbrokerRPi"
