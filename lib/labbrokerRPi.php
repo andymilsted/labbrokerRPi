@@ -38,14 +38,14 @@ class labbrokerRPi {
 		
 		$cmd = "{$this->config['dht_path']} {$sensor} {$id}";
 		
-		for($i=0;$i<5;$i++){
+		for($i=0;$i<10;$i++){
 			$ret = `$cmd`;
 			$file_lines = explode("\n",$ret);
 			
 			if(substr($file_lines[2],0,5)=="temp:" && substr($file_lines[3],0,6)=="humid:")
 				return array(substr($file_lines[2],5),substr($file_lines[3],6));
 		}
-
+		return false;
 	}
 	
 	

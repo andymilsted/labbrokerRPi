@@ -8,7 +8,7 @@ include("../lib/php-serial/php_serial.class.php");
 if(file_exists('/var/run/labbrokerRPi-digitalArduino.pid')){
 	$opid = file_get_contents('/var/run/labbrokerRPi-digitalArduino.pid');
 	if(file_exists("/proc/$opid")){
-		die('allready running');
+		die("allready running\n");
 	}
 }
 file_put_contents('/var/run/labbrokerRPi-digitalArduino.pid',getmypid());

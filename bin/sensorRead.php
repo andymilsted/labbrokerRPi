@@ -37,7 +37,7 @@ if(isset($pi->config['labbroker']['1-wire']) && is_array($pi->config['labbroker'
 if(isset($pi->config['labbroker']['DHT']) && is_array($pi->config['labbroker']['DHT'])) {
 	foreach($pi->config['labbroker']['DHT'] as $id=>$sens){
 		$ret = $pi->readDHT($id,$sens);
-		
+		if($ret==false) continue;
 		if(isset($sens['topic']))
 			foreach($sens['topics'] as $k=>$top){
 				$mqtt->publish($top, $ret[$k],0);
