@@ -39,4 +39,10 @@ $config['labbroker']['DHT'][2] = array(
 
 $config['ddns'] =  "";
 
+$config['arduino']['tty'] = '/dev/ttyACM0';
 
+$config['arduino']['digital'][2] = array(
+	"type"=>"bool",
+	"topic"=>"\$fabric/labbroker/\$feeds/\$onramp/Testing/POWER:WATTS/POWER",
+	"brdata"=>array('labbrokerRPi-test', 'switch')
+);
