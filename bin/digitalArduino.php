@@ -7,7 +7,7 @@ include("../lib/php-serial/php_serial.class.php");
 
 $pi = new labbrokerRPi($config);
 
-if(isset($pi->config['arduino'])){
+if(!isset($pi->config['arduino'])){
 	exit();
 }
 
@@ -53,7 +53,20 @@ while(1){
 	$read = trim($serial->readPort());
 	if(strlen($read)){
 		$read = explode("\n\n",$read);
-		print_r($read);
+		$line = explode(":");
+		if(!isset($pi->config['arduino']['digital'][(int)$line[0]])){
+			continue;
+		}
+		if(isset($sens['topic']) && isset($pi->config['mqtt']))
+			$mqtt->publish($sens['topic'], (int)$line[1],0);
+		if(isset($sens['brdata'])){
+			$data = array();
+			$data['set'] = $set;
+			$data['time'] = time();
+			$data["channels"] = array(array("channel"=>$sens['brdata'][0],"value"=>$sens['brdata'][1]));
+			$brdata->publish($data);
+		}
+			
 	}	
 	usleep(500);
 }

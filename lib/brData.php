@@ -24,6 +24,7 @@ class brData {
 			$data['time'] = time();
 			$data["channels"] = $chans;
 			$this->publish($data);
+			unset($this->queue[$set]);
 		}
 	}
 	
