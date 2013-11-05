@@ -5,6 +5,14 @@ include("../lib/labbrokerRPi.php");
 
 include("../lib/php-serial/php_serial.class.php");
 
+if(file_exists('/var/run/labbrokerRPi-digitalArduino.pid')){
+	$opid = file_get_contents('/var/run/labbrokerRPi-digitalArduino.pid');
+	if(file_exists("/proc/$opid")){
+		die('allready running');
+	}
+}
+file_put_contents('/var/run/labbrokerRPi-digitalArduino.pid',getmypid());
+
 $pi = new labbrokerRPi($config);
 
 if(!isset($pi->config['arduino'])){
