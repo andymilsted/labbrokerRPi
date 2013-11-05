@@ -53,18 +53,21 @@ while(1){
 	$read = trim($serial->readPort());
 	if(strlen($read)){
 		$read = explode("\n\n",$read);
-		$line = explode(":");
-		if(!isset($pi->config['arduino']['digital'][(int)$line[0]])){
-			continue;
-		}
-		if(isset($sens['topic']) && isset($pi->config['mqtt']))
-			$mqtt->publish($sens['topic'], (int)$line[1],0);
-		if(isset($sens['brdata'])){
-			$data = array();
-			$data['set'] = $set;
-			$data['time'] = time();
-			$data["channels"] = array(array("channel"=>$sens['brdata'][0],"value"=>$sens['brdata'][1]));
-			$brdata->publish($data);
+		foreach($read as $rd){
+		$line = explode(":",$rd);
+			if(!isset($pi->config['arduino']['digital'][(int)$line[0]])){
+				continue;
+			}
+			$sens = $pi->config['arduino']['digital'][(int)$line[0]];
+			if(isset($sens['topic']) && isset($pi->config['mqtt']))
+				$mqtt->publish($sens['topic'], (int)$line[1],0);
+			if(isset($sens['brdata'])  && isset($pi->config['brdata'])){
+				$data = array();
+				$data['set'] = $sens['brdata'][0];
+				$data['time'] = time();
+				$data["channels"] = array(array("channel"=>$sens['brdata'][1],"value"=>(int)$line[1]));
+				$brdata->publish($data);
+			}
 		}
 			
 	}	
