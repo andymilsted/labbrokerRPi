@@ -17,6 +17,6 @@ if(isset($config['labbroker']['DHT']) && count($config['labbroker']['DHT'])){
 
 if(isset($config['arduino'])){
 	
-		exec("php digitalArduino.php > /dev/null 2>&1 &");
+		exec("screen -d -m php digitalArduino.php > /dev/null 2>&1 &");
 		
 }

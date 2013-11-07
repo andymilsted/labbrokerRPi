@@ -28,6 +28,9 @@ if(isset($pi->config['mqtt'])){
 	if (!$mqtt->connect()) {
 		die("Can not connect to broker\n");
 	}
+
+	$mqtt_pingevery = $mqtt->keepalive/2;
+	$mqtt_nextping = time() + $mqtt_pingevery;
 }
 if(isset($pi->config['brdata'])){
 	
@@ -56,9 +59,9 @@ $serial->deviceOpen();
 
 
 // Or to read from
-while(1){
+while(($read = $serial->readPort())!==false){
 	// Or to read from
-	$read = trim($serial->readPort());
+	$read = trim($read); //$serial->readPort());
 	if(strlen($read)){
 		$read = explode("\n\n",$read);
 		foreach($read as $rd){
@@ -66,6 +69,9 @@ while(1){
 			if(!isset($pi->config['arduino']['digital'][(int)$line[0]])){
 				continue;
 			}
+			
+			echo date("r")." {$line[0]} - {$line[1]}\n";
+
 			$sens = $pi->config['arduino']['digital'][(int)$line[0]];
 			if(isset($sens['topic']) && isset($pi->config['mqtt']))
 				$mqtt->publish($sens['topic'], (int)$line[1],0);
@@ -79,7 +85,10 @@ while(1){
 		}
 			
 	}	
-	usleep(500);
+
+	$mqtt->proc(); //Keeps mqtt alive;
+
+	usleep(10000);
 }
 
 
